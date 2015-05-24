@@ -25,7 +25,7 @@ RUN sed -i 's/^\$IMJournalStateFile imjournal.state/#\$IMJournalStateFile imjour
 RUN sed -i 's/^\$SystemLogSocketName/#\$SystemLogSocketName/' /etc/rsyslog.d/listen.conf
 
 # sshd
-ADD id_rsa.pub /var/preserve/
+ADD docker_id_rsa.pub /var/preserve/id_rsa.pub
 RUN mkdir /var/run/sshd
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' 
 RUN echo '%wheel	ALL=NOPASSWD: ALL' >>/etc/sudoers
