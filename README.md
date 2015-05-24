@@ -13,8 +13,8 @@ To run:
 Configure ssh config:
 
 ```
-cat ssh_config >>~/.ssh/config
-cp docker_id_rsa* ~/.ssh
+cat ssh/config >>~/.ssh/config
+cp ssh/docker_id_rsa* ~/.ssh
 ```
 
 To test, simply run:

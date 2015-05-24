@@ -18,14 +18,14 @@ ADD ./README.md /root/README.md
 RUN echo 'HOSTNAME=docker' >>/etc/sysconfig/network
 
 # rsyslogd
-ADD elk.conf /etc/rsyslog.d/elk.conf
+ADD rsyslog.d/elk.conf /etc/rsyslog.d/elk.conf
 RUN sed -i 's/^\$ModLoad imjournal/#\$ModLoad imjournal/' /etc/rsyslog.conf
 RUN sed -i 's/^\$OmitLocalLogging on/\$OmitLocalLogging off/' /etc/rsyslog.conf
 RUN sed -i 's/^\$IMJournalStateFile imjournal.state/#\$IMJournalStateFile imjournal.state/' /etc/rsyslog.conf
 RUN sed -i 's/^\$SystemLogSocketName/#\$SystemLogSocketName/' /etc/rsyslog.d/listen.conf
 
 # sshd
-ADD docker_id_rsa.pub /var/preserve/id_rsa.pub
+ADD ssh/docker_id_rsa.pub /var/preserve/id_rsa.pub
 RUN mkdir /var/run/sshd
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' 
 RUN echo '%wheel	ALL=NOPASSWD: ALL' >>/etc/sudoers
@@ -33,9 +33,9 @@ RUN echo '%wheel	ALL=NOPASSWD: ALL' >>/etc/sudoers
 # init
 RUN mkdir -p /opt/bin
 RUN mkdir -p /opt/run
-ADD init.sh /opt/bin/init.sh
-ADD 00_rsyslogd /opt/run/00_rsyslogd
-ADD 01_sshd /opt/run/01_sshd
+ADD init/init.sh /opt/bin/init.sh
+ADD init/00_rsyslogd /opt/run/00_rsyslogd
+ADD init/01_sshd /opt/run/01_sshd
 RUN chmod 755 /opt/bin/*
 RUN chmod 755 /opt/run/*
 
