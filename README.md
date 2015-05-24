@@ -1,4 +1,4 @@
-# dockerfiles-centos-ssh
+# dockerfiles-centos-ssh-rsyslog
 
 # Building & Running
 
@@ -8,16 +8,15 @@ Copy the sources to your docker host and build the container:
 
 To run:
 
-	# docker run -d -p 22 <username>/ssh:centos7
+	# docker run -d -p 2222:22 <username>/ssh_rsyslog:centos7
 
-Get the port that the container is listening on:
+Configure ssh config:
 
 ```
-# docker ps
-CONTAINER ID        IMAGE                 COMMAND             CREATED             STATUS              PORTS                   NAMES
-8c82a9287b23        <username>/ssh:centos7   /usr/sbin/sshd -D   4 seconds ago       Up 2 seconds        0.0.0.0:49154->22/tcp   mad_mccarthy        
+cat ssh_config >>~/.ssh/config
+cp docker_id_rsa* ~/.ssh
 ```
 
-To test, use the port that was just located:
+To test, simply run:
 
-	# ssh -p xxxx user@localhost 
+	# ssh docker 

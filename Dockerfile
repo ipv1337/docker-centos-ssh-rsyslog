@@ -1,5 +1,5 @@
 #
-#http://www.projectatomic.io/docs/docker-image-author-guidance/
+# http://www.projectatomic.io/docs/docker-image-author-guidance/
 # http://www.projectatomic.io/blog/2014/09/running-syslog-within-a-docker-container/
 #
 
@@ -7,7 +7,6 @@ FROM centos:centos7
 MAINTAINER James H Nguyen <james@callfire.com>
 
 RUN yum -y update && yum clean all
-#RUN yum -y install openssh-server passwd sudo rsyslog supervisor && yum clean all
 RUN yum -y install openssh-server passwd sudo rsyslog && yum clean all
 RUN yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm && yum clean all
 
@@ -40,9 +39,4 @@ ADD 01_sshd /opt/run/01_sshd
 RUN chmod 755 /opt/bin/*
 RUN chmod 755 /opt/run/*
 
-#ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-
-# EXPOSE 22
-
-#ENTRYPOINT ["/usr/bin/supervisord"]
 ENTRYPOINT ["/opt/bin/init.sh"]
