@@ -1,0 +1,20 @@
+#!/bin/bash
+
+__create_user() {
+# Create a user to SSH into as.
+useradd docker -G wheel
+SSH_USERPASS=docker
+echo -e "$SSH_USERPASS\n$SSH_USERPASS" | (passwd --stdin docker)
+echo ssh user password: $SSH_USERPASS
+mkdir /home/docker/.ssh && \
+mv /var/preserve/id_rsa.pub /home/docker/.ssh/authorized_keys && \
+chown -R docker:docker /home/docker/.ssh && \
+chmod 644 /home/docker/.ssh/authorized_keys
+}
+
+__start_sshd() {
+exec /usr/sbin/sshd -D
+}
+
+__create_user
+__start_sshd

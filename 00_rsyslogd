@@ -1,0 +1,7 @@
+#!/bin/bash
+
+__start_rsyslogd() {
+/usr/sbin/rsyslogd
+}
+
+__start_rsyslogd

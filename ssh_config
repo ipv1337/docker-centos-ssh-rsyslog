@@ -1,0 +1,4 @@
+Host docker
+	Hostname localhost
+	Port 2222
+	User docker
