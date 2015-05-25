@@ -6,7 +6,7 @@ touch $LOG
 
 for a in /opt/run/*
 do
-    $a >> $LOG &
+    $a $* >> $LOG &
 done
 
 tail -f $LOG

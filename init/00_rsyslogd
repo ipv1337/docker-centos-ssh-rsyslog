@@ -1,7 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+REMOTE_HOST=${1:-loghost.example.com}
+
+__set_loghost() {
+sed -i "s/LOGHOST/${REMOTE_HOST}/" /etc/rsyslog.d/remote.conf
+}
 
 __start_rsyslogd() {
 /usr/sbin/rsyslogd
 }
 
+__set_loghost $REMOTE_HOST
 __start_rsyslogd

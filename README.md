@@ -20,3 +20,7 @@ cp ssh/docker_id_rsa* ~/.ssh
 To test, simply run:
 
 	# ssh docker 
+
+Or run:
+
+	# docker exec -it ssh_rsyslog logger 'sample log message'

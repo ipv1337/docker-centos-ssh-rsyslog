@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 __create_user() {
 # Create a user to SSH into as.

@@ -18,7 +18,7 @@ ADD ./README.md /root/README.md
 RUN echo 'HOSTNAME=docker' >>/etc/sysconfig/network
 
 # rsyslogd
-ADD rsyslog.d/elk.conf /etc/rsyslog.d/elk.conf
+ADD rsyslog.d/remote.conf /etc/rsyslog.d/remote.conf
 RUN sed -i 's/^\$ModLoad imjournal/#\$ModLoad imjournal/' /etc/rsyslog.conf
 RUN sed -i 's/^\$OmitLocalLogging on/\$OmitLocalLogging off/' /etc/rsyslog.conf
 RUN sed -i 's/^\$IMJournalStateFile imjournal.state/#\$IMJournalStateFile imjournal.state/' /etc/rsyslog.conf
@@ -40,3 +40,4 @@ RUN chmod 755 /opt/bin/*
 RUN chmod 755 /opt/run/*
 
 ENTRYPOINT ["/opt/bin/init.sh"]
+CMD ["--help"]
