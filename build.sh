@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-./docker images | grep ssh_rsyslog || ./docker build --rm=true -t ipv1337/ssh_rsyslog:centos7 .
+./docker images | grep rsyslog || ./docker build --rm=true -t ipv1337/rsyslog:centos7 .
